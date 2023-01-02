@@ -1,0 +1,33 @@
+﻿<Window x:Class="WpfMvvmToolkit.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="{Binding Title}"
+        mc:Ignorable="d"
+        Height="450" Width="800">
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBox Grid.Column="0"
+                 HorizontalContentAlignment="Center"
+                 VerticalContentAlignment="Center"
+                 FontSize="100"
+                 IsReadOnly="{Binding Path=IsBusy}"
+                 Text="{Binding Path=TotalCount}"/>
+        
+        <Button Grid.Column="1"
+                Content="{Binding Path=Button1Content}"
+                IsEnabled="{Binding Path=IsBusy, Converter={StaticResource InverseBooleanConverter}}"
+                Command="{Binding DoCountDownCommand}"/>
+        
+        <Button Grid.Column="2"
+                Content="{Binding Path=Button2Content}"
+                IsEnabled="{Binding Path=IsBusy, Converter={StaticResource InverseBooleanConverter}}"
+                Command="{Binding DoCountDownAsyncCommand}"/>
+    </Grid>
+</Window>
